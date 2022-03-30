@@ -1,0 +1,12 @@
+<div fxLayout="column" fxLayoutAlign=" stretch" fxLayoutGap="15px">
+  <mat-calendar [(selected)]="selected"></mat-calendar>
+
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
+    <button mat-stroked-button color="primary" (click)="onCancelClick()">
+      Cancel
+    </button>
+    <button mat-flat-button color="primary" (click)="onSetDateClick()">
+      Set Date
+    </button>
+  </div>
+</div>

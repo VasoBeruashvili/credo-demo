@@ -1,0 +1,159 @@
+<form
+  [formGroup]="signUpForm"
+  (ngSubmit)="onSubmit()"
+  fxLayout="row"
+  fxLayoutAlign="center start"
+  fxLayoutGap="100px"
+  class="app-padding-40-16"
+>
+  <div
+    fxFlex="250px"
+    fxLayout="column"
+    fxLayoutAlign=" stretch"
+    fxLayoutGap="30px"
+  >
+    <p class="app-bold app-font-36 sign-up-title">Create an account</p>
+
+    <p
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="10px"
+      class="app-font-16"
+    >
+      <mat-icon fontSet="material-icons-outlined" color="primary"
+        >shield</mat-icon
+      >
+      <span>Secure payments through reliable partners</span>
+    </p>
+
+    <p
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="10px"
+      class="app-font-16"
+    >
+      <mat-icon color="primary">electric_bolt</mat-icon>
+      <span>Fast transfer</span>
+    </p>
+
+    <p
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="10px"
+      class="app-font-16"
+    >
+      <mat-icon color="primary">percent</mat-icon>
+      <span>Fair commissions</span>
+    </p>
+
+    <p
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="10px"
+      class="app-font-16"
+    >
+      <mat-icon color="primary">trending_up</mat-icon>
+      <span>Best available rates</span>
+    </p>
+
+    <p
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="10px"
+      class="app-font-16"
+    >
+      <mat-icon fontSet="material-icons-outlined" color="primary"
+        >thumb_up</mat-icon
+      >
+      <span>Convenience</span>
+    </p>
+  </div>
+
+  <div fxFlex="400px" fxLayout="column" fxLayoutAlign=" stretch">
+    <mat-form-field appearance="outline">
+      <mat-label>Full Name</mat-label>
+      <input matInput placeholder="John Doe" formControlName="fullName" />
+      <mat-icon
+        *ngIf="signUpForm.controls['fullName'].valid"
+        matSuffix
+        class="app-color-green"
+        >check</mat-icon
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="johndoe@email.com" formControlName="email" />
+      <mat-icon
+        *ngIf="signUpForm.controls['email'].valid"
+        matSuffix
+        class="app-color-green"
+        >check</mat-icon
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput placeholder="5********" formControlName="phone" />
+      <mat-icon
+        *ngIf="signUpForm.controls['phone'].valid"
+        matSuffix
+        class="app-color-green"
+        >check</mat-icon
+      >
+    </mat-form-field>
+
+    <mat-form-field fxFlex appearance="outline">
+      <mat-label *ngIf="!passwordSecurityLevel">Password</mat-label>
+      <input
+        matInput
+        placeholder="************"
+        formControlName="password"
+        [type]="hidePassword ? 'password' : 'text'"
+      />
+      <mat-icon
+        matSuffix
+        class="app-color-gray app-pointer"
+        (click)="onTogglePassword()"
+      >
+        {{ hidePassword ? "visibility" : "visibility_off" }}
+      </mat-icon>
+      <mat-label
+        *ngIf="passwordSecurityLevel"
+        class="{{ passwordSecurityLevel.class }}"
+        >{{ passwordSecurityLevel.text }}
+      </mat-label>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" class="sign-up-btn">Sign up</button>
+
+    <mat-checkbox
+      fxFlex
+      color="primary"
+      class="app-font-14 app-color-gray sign-up-terms-check"
+      [class.app-color-red]="
+        (formSubmitted && signUpForm.controls['terms'].invalid) ||
+        (signUpForm.controls['terms'].touched &&
+          signUpForm.controls['terms'].invalid)
+      "
+      formControlName="terms"
+      >I agree to our Terms of Service and Privacy Policy</mat-checkbox
+    >
+
+    <div fxLayout="column" fxLayoutAlign=" stretch" fxLayoutGap="10px">
+      <a
+        mat-stroked-button
+        color="primary"
+        class="calendar-dialog-btn"
+        (click)="onOpenCalendarClick()"
+        >Open Calendar Dialog</a
+      >
+
+      <p *ngIf="selectedDate" class="app-bold app-font-16">
+        Selected date is:
+        <span class="app-color-green">{{
+          selectedDate | date: "dd.MM.yyyy"
+        }}</span>
+      </p>
+    </div>
+  </div>
+</form>
